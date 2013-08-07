@@ -52,19 +52,28 @@ namespace Dictionary{
 		//The function has 2 options, register or display
 		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
 			
-			//Before Registering we check if it already exists
-			if (theTrslDict.ContainsKey(theRegKey)) {
-				Console.WriteLine("Sorry " +theTrslDict[theRegKey][(int)theRegion] +" is already registered!");
-				//We display it
-				Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
-			}else{
-				//We register the key
-				theTrslDict.Add(theRegKey, theValues);
-				//Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
-				Console.WriteLine(theTrslDict[theRegKey][(int)theRegion] +" +1");
-			}
-	
+			//We check to see if the user tried to call for  a word that does not exist in a region
+			if((int)theRegion > theValues.Count){
+				
+				Console.WriteLine("<!> The translation for this has yet to be translated <!>.");	
 			
+			}else{
+			
+			
+				//Before Registering we check if it already exists
+				if (theTrslDict.ContainsKey(theRegKey)) {
+					Console.WriteLine("Sorry " +theTrslDict[theRegKey][(int)theRegion] +" is already registered!");
+					//We display it
+					Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+				}else{
+					//We register the key
+					theTrslDict.Add(theRegKey, theValues);
+					//Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
+					Console.WriteLine(theTrslDict[theRegKey][(int)theRegion] +" +1");
+				}
+				
+	
+			}
 		}
 		
 	
@@ -77,6 +86,7 @@ namespace Dictionary{
 			translateWord(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
 			translateWord(registeredKeys.gameOnlineMode, languageRegion.fr_can, gameOnlineMode);
 			translateWord(registeredKeys.gameOnlineMode, languageRegion.spn_mex, gameOnlineMode);
+			translateWord(registeredKeys.gameOnlineMode, languageRegion.en_uk, gameOnlineMode);
 		}
 	}
 	
