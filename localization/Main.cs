@@ -5,7 +5,7 @@ using System.Collections;
 namespace Dictionary{
 	
 	class MainClass{	
-		//First we want to has a bank that holds all the possible keys.
+		//First we want to have a bank that holds all the possible keys.
 		enum rgstKey{
 			gameContinue,
 			gameStage,
@@ -33,13 +33,12 @@ namespace Dictionary{
 		//Main Dictionary, we use an enum as a key and fill the info with a list.
 		static Dictionary<rgstKey, List<string> > theTrslDict = new Dictionary<rgstKey, List<string> >();
 		
-		
 		//We initiate the  dictionaries the index will guide us for which region we are calling for
 		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie", "Nuevo Juego" } );
-		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter", "parar" } );
+		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter", "Parar" } );
 		static List<string> gameMultiplayer = new List<string>(new string[] { "Multiplayer", "muuchiplay", "Multi-Jouers", "Multijugador" } );
 		static List<string> gameContinue = new List<string>(new string[] { "Continue", "Tsuzuku", "Continuer", "Continuar" } );
-		static List<string> gameOnlineMode = new List<string>(new string[] { "Online", "Onrainu", "En ligne", "en línear" } );
+		static List<string> gameOnlineMode = new List<string>(new string[] { "Online", "Onrainu", "En ligne", "En línear" } );
 		
 		
 		//The function has 2 options, register or display
@@ -54,8 +53,9 @@ namespace Dictionary{
 			
 				//Before Registering we check if it already exists
 				if (theTrslDict.ContainsKey(theRegKey)) {
+					//We warn the user that it already exists
 					Console.WriteLine("Sorry " +theTrslDict[theRegKey][(int)theRegion] +" is already registered!");
-					//We display it
+					//We help the user by giving him the translation anyways. (This prevents the fct to have a set and not set)
 					Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
 				}else{
 					//We register the key
