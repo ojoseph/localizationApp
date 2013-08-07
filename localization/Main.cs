@@ -6,7 +6,7 @@ namespace Dictionary{
 	
 	class MainClass{	
 		//First we want to has a bank that holds all the possible keys.
-		enum registeredKeys{
+		enum rgstKey{
 			gameContinue,
 			gameStage,
 			gameStartNew,
@@ -16,7 +16,7 @@ namespace Dictionary{
 		}
 		
 		//Here we store the different Languages + Regions
-		enum languageRegion{
+		enum lngReg{
 			jp = 1,
 			en_us = 0,
 			en_uk = 7,
@@ -31,7 +31,7 @@ namespace Dictionary{
 		//#################################################################################################
 		
 		//Main Dictionary, we use an enum as a key and fill the info with a list.
-		static Dictionary<registeredKeys, List<string> > theTrslDict = new Dictionary<registeredKeys, List<string> >();
+		static Dictionary<rgstKey, List<string> > theTrslDict = new Dictionary<rgstKey, List<string> >();
 		
 		
 		//We initiate the  dictionaries the index will guide us for which region we are calling for
@@ -43,7 +43,7 @@ namespace Dictionary{
 		
 		
 		//The function has 2 options, register or display
-		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
+		static void translateWord(rgstKey theRegKey, lngReg theRegion, List<string> theValues){
 			
 			//We check to see if the user tried to call for  a word that does not exist in a region/not translated yet
 			if((int)theRegion > theValues.Count){
@@ -70,14 +70,14 @@ namespace Dictionary{
 	
 		public static void Main (string[] args){
 			//We call the translations here
-			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
-			translateWord(registeredKeys.gameMultiplayer, languageRegion.jp, gameMultiplayer);
-			translateWord(registeredKeys.gameExit, languageRegion.jp, gameExit);
-			translateWord(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
-			translateWord(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
-			translateWord(registeredKeys.gameOnlineMode, languageRegion.fr_can, gameOnlineMode);
-			translateWord(registeredKeys.gameOnlineMode, languageRegion.spn_mex, gameOnlineMode);
-			translateWord(registeredKeys.gameOnlineMode, languageRegion.en_uk, gameOnlineMode);
+			translateWord(rgstKey.gameContinue, lngReg.jp, gameContinue);
+			translateWord(rgstKey.gameMultiplayer, lngReg.jp, gameMultiplayer);
+			translateWord(rgstKey.gameExit, lngReg.jp, gameExit);
+			translateWord(rgstKey.gameStartNew, lngReg.jp, gameStartNew);
+			translateWord(rgstKey.gameStartNew, lngReg.jp, gameStartNew);
+			translateWord(rgstKey.gameOnlineMode, lngReg.fr_can, gameOnlineMode);
+			translateWord(rgstKey.gameOnlineMode, lngReg.spn_mex, gameOnlineMode);
+			translateWord(rgstKey.gameOnlineMode, lngReg.en_uk, gameOnlineMode);
 		}
 		
 	}//End Main class
