@@ -15,33 +15,38 @@ namespace Dictionary{
 		
 		//Here we store the different Languages + Regions
 		enum languageRegion{
-			jp,
-			en_us,
-			en_uk,
-			fr_fr,
-			fr_can,
-			spn_spn,
-			spn_mex
+			jp = 1,
+			en_us = 0,
+			en_uk = 7,
+			fr_fr = 5,
+			fr_can = 2,
+			spn_spn = 9,
+			spn_mex =10
 		}
 		
-		// Create and return new Hashtable.
-		//Hashtable hashtable = new Hashtable();
-		
+	
 		public static void Main (string[] args){	
 			Console.WriteLine ("Hello World!");
-			//Dictionary<registeredKeys, string> theMainDict = new Dictionary<registeredKeys, string>();
-			//theMainDict.Add(registeredKeys.gameMultiplayer, "MultiJoueur");
-			/*theMainDict.Add(registeredKeys.gameMultiplayer, "multijoueur");
-			theMainDict.Add(registeredKeys.gameStage, "Niveau");
-			theMainDict.Add(registeredKeys.gameStartNew, "Commencer");
-			theMainDict.Add(registeredKeys.gameExit, "Quitter");*/
-			
-			//Dictionary<registeredKeys, languageRegion> segaSonic = new Dictionary<registeredKeys, languageRegion>();
 		
-			
-			//pokemon Pikachu = new pokemon(25,"Pikachu",35,55,30,90,pokemon.theType.electric, PikachuMVList);
 			keywords wordContinue = new keywords(keywords.rgistKey.gameContinue,"Continuer","Continue","Tsuzuku");
-			wordContinue.getTheObjct(keywords.lngRegion.fr_can,wordContinue);
+			wordContinue.getTheObjct(wordContinue,keywords.lngRegion.fr_can);
+			
+			keywords wordGameStage = new keywords(keywords.rgistKey.gameStage,"Niveau","Stage","Sute-ji");
+			wordGameStage.getTheObjct(wordGameStage,keywords.lngRegion.jp);
+			
+			//#################################################################################################
+			// New dict
+			//#################################################################################################
+			List<string> someTestList = new List<string>(new string[] { "english", "japanese", "french" } );
+			
+			Console.WriteLine("---->" + someTestList[1]);
+			
+			
+			Dictionary<registeredKeys, List<string>> theDict = new Dictionary<registeredKeys, List<string>>();
+			theDict.Add(registeredKeys.gameContinue, someTestList);
+			Console.WriteLine("EEEE: " + theDict[registeredKeys.gameContinue][(int)languageRegion.jp]);
+			
+			//#################################################################################################
 		}
 		
 		
@@ -98,7 +103,7 @@ namespace Dictionary{
 			
 		}
 		
-		public void getTheObjct(lngRegion wantedRegion, keywords theKeyWord){
+		public void getTheObjct(keywords theKeyWord, lngRegion wantedRegion){
 			
 			switch(wantedRegion){
 				case lngRegion.en_us:
