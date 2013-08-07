@@ -24,24 +24,16 @@ namespace Dictionary{
 			spn_spn = 9,
 			spn_mex = 3
 		}
-		
-		//decides if the user displays or register the info
-		enum transAct{
-			register,
-			display
-		}
-		
-		
 	
 		//#################################################################################################
-		// New dict -> FCT
+		// New dict -> FCT Note: We use static as the ojb does not require and instance 
 		//#################################################################################################
 		
-		//Main holder
+		//Main Dictionary, we use an enum as a key and fill the info with a list.
 		static Dictionary<registeredKeys, List<string> > theTrslDict = new Dictionary<registeredKeys, List<string> >();
 		
 		
-		//We initiate the  dictionaries
+		//We initiate the  dictionaries the index will guide us for which region we are calling for
 		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie", "Nuevo Juego" } );
 		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter", "parar" } );
 		static List<string> gameMultiplayer = new List<string>(new string[] { "Multiplayer", "muuchiplay", "Multi-Jouers", "Multijugador" } );
@@ -52,13 +44,12 @@ namespace Dictionary{
 		//The function has 2 options, register or display
 		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
 			
-			//We check to see if the user tried to call for  a word that does not exist in a region
+			//We check to see if the user tried to call for  a word that does not exist in a region/not translated yet
 			if((int)theRegion > theValues.Count){
 				
-				Console.WriteLine("<!> The translation for this has yet to be translated <!>.");	
+				Console.WriteLine("<!> This word has yet to be translated <!>.");	
 			
 			}else{
-			
 			
 				//Before Registering we check if it already exists
 				if (theTrslDict.ContainsKey(theRegKey)) {
@@ -71,7 +62,6 @@ namespace Dictionary{
 					//Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
 					Console.WriteLine(theTrslDict[theRegKey][(int)theRegion] +" +1");
 				}
-				
 	
 			}
 		}
