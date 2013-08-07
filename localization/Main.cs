@@ -24,7 +24,11 @@ namespace Dictionary{
 			spn_mex =10
 		}
 		
-		
+		//decides if the user displays or register the info
+		enum transAct{
+			register,
+			display
+		}
 		//#################################################################################################
 		// New dict -> FCT
 		//#################################################################################################
@@ -37,30 +41,39 @@ namespace Dictionary{
 		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie" } );
 		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter" } );
 		
-	
-		//There is 2 fcts 
-		
-		//We register the  content into the dictionnary in here.
-		static void registerKeyword(registeredKeys theRegKey, List<string> theValues){
-			theTrslDict.Add(theRegKey, theValues);
-		}
-		
-		//We
-		static void findTranslation(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
-			//theTrslDict.Add(theRegKey, theValues);
-			
-			Console.WriteLine("WWWWWWWWW: " + theTrslDict[theRegKey][(int)theRegion]);
+		//The function has 2 options, register or display
+		static void findTranslation(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues, transAct theAction){
+			switch(theAction){
+				case transAct.register:
+					//Before Registering we check if it already exists
+					if (theTrslDict.ContainsKey(theRegKey)) {
+						Console.WriteLine("Sorry This key is already registered!");
+					}else{
+						//We register the key
+						Console.WriteLine("New key is registered!");
+						theTrslDict.Add(theRegKey, theValues);
+					}
+				break;
+				case transAct.display:
+					//We display the keyword
+					Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+				break;
+			}
 		}
 		
 		
 	
 		public static void Main (string[] args){
-			registerKeyword(registeredKeys.gameStartNew ,gameStartNew);
-			registerKeyword(registeredKeys.gameExit ,gameExit);
+			//registerKeyword(registeredKeys.gameStartNew ,gameStartNew);
+			//registerKeyword(registeredKeys.gameExit ,gameExit);
 			
-			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
+			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
+			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
+			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.display);
+			
+			/*findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
 			findTranslation(registeredKeys.gameExit, languageRegion.jp, gameExit);
-			findTranslation(registeredKeys.gameExit, languageRegion.en_us, gameExit);
+			findTranslation(registeredKeys.gameExit, languageRegion.en_us, gameExit);*/
 			
 			
 			
