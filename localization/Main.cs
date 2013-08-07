@@ -24,8 +24,49 @@ namespace Dictionary{
 			spn_mex =10
 		}
 		
+		
+		//#################################################################################################
+		// New dict -> FCT
+		//#################################################################################################
+		
+		//Main holder
+		static Dictionary<registeredKeys, List<string> > theTrslDict = new Dictionary<registeredKeys, List<string> >();
+		
+		
+		//We initiate the  dictionaries
+		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie" } );
+		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter" } );
+		
 	
-		public static void Main (string[] args){	
+		//There is 2 fcts 
+		
+		//We register the  content into the dictionnary in here.
+		static void registerKeyword(registeredKeys theRegKey, List<string> theValues){
+			theTrslDict.Add(theRegKey, theValues);
+		}
+		
+		//We
+		static void findTranslation(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
+			//theTrslDict.Add(theRegKey, theValues);
+			
+			Console.WriteLine("WWWWWWWWW: " + theTrslDict[theRegKey][(int)theRegion]);
+		}
+		
+		
+	
+		public static void Main (string[] args){
+			registerKeyword(registeredKeys.gameStartNew ,gameStartNew);
+			registerKeyword(registeredKeys.gameExit ,gameExit);
+			
+			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
+			findTranslation(registeredKeys.gameExit, languageRegion.jp, gameExit);
+			findTranslation(registeredKeys.gameExit, languageRegion.en_us, gameExit);
+			
+			
+			
+			
+			
+			
 			Console.WriteLine ("Hello World!");
 		
 			keywords wordContinue = new keywords(keywords.rgistKey.gameContinue,"Continuer","Continue","Tsuzuku");
@@ -39,15 +80,23 @@ namespace Dictionary{
 			//#################################################################################################
 			List<string> someTestList = new List<string>(new string[] { "english", "japanese", "french" } );
 			
-			Console.WriteLine("---->" + someTestList[1]);
+			//Console.WriteLine("---->" + someTestList[1]);
+			List<string> wordStage = new List<string>(new string[] { "Stage", "Sute-ji", "Niveau" } );
 			
 			
-			Dictionary<registeredKeys, List<string>> theDict = new Dictionary<registeredKeys, List<string>>();
+			
+			Dictionary<registeredKeys, List<string> > theDict = new Dictionary<registeredKeys, List<string> >();
 			theDict.Add(registeredKeys.gameContinue, someTestList);
-			Console.WriteLine("EEEE: " + theDict[registeredKeys.gameContinue][(int)languageRegion.jp]);
+			theDict.Add(registeredKeys.gameStage, wordStage);
+			Console.WriteLine("EEEE: " + theDict[registeredKeys.gameContinue][(int)languageRegion.fr_can]);
+			Console.WriteLine("RRRR: " + theDict[registeredKeys.gameStage][(int)languageRegion.fr_can]);
+			
+			
 			
 			//#################################################################################################
 		}
+		
+		
 		
 		
 		
