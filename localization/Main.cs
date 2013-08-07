@@ -29,6 +29,9 @@ namespace Dictionary{
 			register,
 			display
 		}
+		
+		
+	
 		//#################################################################################################
 		// New dict -> FCT
 		//#################################################################################################
@@ -42,31 +45,6 @@ namespace Dictionary{
 		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter" } );
 		static List<string> gameMultiplayer = new List<string>(new string[] { "Multiplayer", "muuchiplay", "Multi-Jouers" } );
 		static List<string> gameContinue = new List<string>(new string[] { "Continue", "Tsuzuku", "Continuer" } );
-		
-		
-		//The function has 2 options, register or display
-		static void findTranslation(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues, transAct theAction){
-			switch(theAction){
-				case transAct.register:
-					//Before Registering we check if it already exists
-					if (theTrslDict.ContainsKey(theRegKey)) {
-						Console.WriteLine("Sorry This key is already registered!");
-					}else{
-						//We register the key
-						Console.WriteLine("New key is registered!");
-						theTrslDict.Add(theRegKey, theValues);
-					}
-				break;
-				case transAct.display:
-					//We display the keyword
-					Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
-				break;
-			}
-		}
-		
-		
-		
-		
 		
 		//The function has 2 options, register or display
 		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
@@ -82,66 +60,16 @@ namespace Dictionary{
 				Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
 			}
 	
-			//We display the keyword
-			//Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+			
 		}
-		
-		
-		
 		
 	
 		public static void Main (string[] args){
-			/*findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
-			//findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
-			findTranslation(registeredKeys.gameExit, languageRegion.jp, gameExit, transAct.register);
-			findTranslation(registeredKeys.gameMultiplayer, languageRegion.jp, gameMultiplayer, transAct.register);
-			
-			
-			
-			
-			findTranslation(registeredKeys.gameMultiplayer, languageRegion.fr_can, gameMultiplayer, transAct.display);
-			findTranslation(registeredKeys.gameExit, languageRegion.fr_can, gameExit, transAct.display);
-			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.display);*/
-			
-		
 			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
-			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
-			
-			
-			
-			
-			Console.WriteLine ("Hello World!");
-		
-			keywords wordContinue = new keywords(keywords.rgistKey.gameContinue,"Continuer","Continue","Tsuzuku");
-			wordContinue.getTheObjct(wordContinue,keywords.lngRegion.fr_can);
-			
-			keywords wordGameStage = new keywords(keywords.rgistKey.gameStage,"Niveau","Stage","Sute-ji");
-			wordGameStage.getTheObjct(wordGameStage,keywords.lngRegion.jp);
-			
-			//#################################################################################################
-			// New dict
-			//#################################################################################################
-			List<string> someTestList = new List<string>(new string[] { "english", "japanese", "french" } );
-			
-			//Console.WriteLine("---->" + someTestList[1]);
-			List<string> wordStage = new List<string>(new string[] { "Stage", "Sute-ji", "Niveau" } );
-			
-			
-			
-			Dictionary<registeredKeys, List<string> > theDict = new Dictionary<registeredKeys, List<string> >();
-			theDict.Add(registeredKeys.gameContinue, someTestList);
-			theDict.Add(registeredKeys.gameStage, wordStage);
-			Console.WriteLine("EEEE: " + theDict[registeredKeys.gameContinue][(int)languageRegion.fr_can]);
-			Console.WriteLine("RRRR: " + theDict[registeredKeys.gameStage][(int)languageRegion.fr_can]);
-			
-			
-			
-			//#################################################################################################
+			translateWord(registeredKeys.gameMultiplayer, languageRegion.jp, gameMultiplayer);
+			translateWord(registeredKeys.gameExit, languageRegion.jp, gameExit);
+			translateWord(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
 		}
-		
-		
-		
-		
 		
 		//Fonction avec 2 parametres
 		// Param = (le mot clef,   la langue/Region)
@@ -150,67 +78,6 @@ namespace Dictionary{
 		//On retourne le resultat 
 		
 		//List<string> listKeyword = new List<string>();
-		
-		
-		
-	}
-	
-	class keywords{
-		
-		public rgistKey kwrdKey;
-		//public lngRegion kwrdRegion;
-		public string kwrdFr;
-		public string kwrdEng;
-		public string kwrdJp;
-		
-		
-		//First we want to has a bank that holds all the possible keys.
-		public enum rgistKey{
-			gameContinue,
-			gameStage,
-			gameStartNew,
-			gameExit,
-			gameMultiplayer
-		}
-		
-		//Here we store the different Languages + Regions
-		public enum lngRegion{
-			jp,
-			en_us,
-			en_uk,
-			fr_fr,
-			fr_can,
-			spn_spn,
-			spn_mex
-		}
-		
-		//Constructor
-		public keywords(rgistKey theKey, /*lngRegion theRegion, */string txtFr, string txtEng, string txtJp){
-			
-			kwrdKey = theKey;
-			//kwrdRegion = theRegion;
-			kwrdFr = txtFr;
-			kwrdEng = txtEng;
-			kwrdJp = txtJp;
-			
-		}
-		
-		public void getTheObjct(keywords theKeyWord, lngRegion wantedRegion){
-			
-			switch(wantedRegion){
-				case lngRegion.en_us:
-					Console.WriteLine("US: " + theKeyWord.kwrdEng);
-				break;
-				case lngRegion.jp:
-					Console.WriteLine("JAPAN: " + theKeyWord.kwrdJp);
-				break;
-				case lngRegion.fr_can:
-					Console.WriteLine("CANADA: " + theKeyWord.kwrdFr);
-				break;
-			}
-			
-		}
-		
 	}
 	
 	
