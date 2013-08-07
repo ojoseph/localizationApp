@@ -40,6 +40,9 @@ namespace Dictionary{
 		//We initiate the  dictionaries
 		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie" } );
 		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter" } );
+		static List<string> gameMultiplayer = new List<string>(new string[] { "Multiplayer", "muuchiplay", "Multi-Jouers" } );
+		static List<string> gameContinue = new List<string>(new string[] { "Continue", "Tsuzuku", "Continuer" } );
+		
 		
 		//The function has 2 options, register or display
 		static void findTranslation(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues, transAct theAction){
@@ -62,20 +65,48 @@ namespace Dictionary{
 		}
 		
 		
+		
+		
+		
+		//The function has 2 options, register or display
+		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
+			
+					//Before Registering we check if it already exists
+					if (theTrslDict.ContainsKey(theRegKey)) {
+						Console.WriteLine("Sorry " +theTrslDict[theRegKey][(int)theRegion] +" is already registered!");
+						//We display it
+						Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+					}else{
+						//We register the key
+						
+						theTrslDict.Add(theRegKey, theValues);
+						Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
+					}
+			
+					//We display the keyword
+					//Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+		}
+		
+		
+		
+		
 	
 		public static void Main (string[] args){
-			//registerKeyword(registeredKeys.gameStartNew ,gameStartNew);
-			//registerKeyword(registeredKeys.gameExit ,gameExit);
+			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
+			//findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
+			findTranslation(registeredKeys.gameExit, languageRegion.jp, gameExit, transAct.register);
+			findTranslation(registeredKeys.gameMultiplayer, languageRegion.jp, gameMultiplayer, transAct.register);
 			
-			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
-			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
+			
+			
+			
+			findTranslation(registeredKeys.gameMultiplayer, languageRegion.fr_can, gameMultiplayer, transAct.display);
+			findTranslation(registeredKeys.gameExit, languageRegion.fr_can, gameExit, transAct.display);
 			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.display);
 			
-			/*findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
-			findTranslation(registeredKeys.gameExit, languageRegion.jp, gameExit);
-			findTranslation(registeredKeys.gameExit, languageRegion.en_us, gameExit);*/
-			
-			
+		
+			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
+			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
 			
 			
 			
