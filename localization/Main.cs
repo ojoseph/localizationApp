@@ -10,7 +10,8 @@ namespace Dictionary{
 			gameStage,
 			gameStartNew,
 			gameExit,
-			gameMultiplayer
+			gameMultiplayer,
+			gameOnlineMode
 		}
 		
 		//Here we store the different Languages + Regions
@@ -21,7 +22,7 @@ namespace Dictionary{
 			fr_fr = 5,
 			fr_can = 2,
 			spn_spn = 9,
-			spn_mex =10
+			spn_mex = 3
 		}
 		
 		//decides if the user displays or register the info
@@ -41,10 +42,12 @@ namespace Dictionary{
 		
 		
 		//We initiate the  dictionaries
-		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie" } );
-		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter" } );
-		static List<string> gameMultiplayer = new List<string>(new string[] { "Multiplayer", "muuchiplay", "Multi-Jouers" } );
-		static List<string> gameContinue = new List<string>(new string[] { "Continue", "Tsuzuku", "Continuer" } );
+		static List<string> gameStartNew = new List<string>(new string[] { "New Game", "Hajime", "Nouvelle Partie", "Nuevo Juego" } );
+		static List<string> gameExit = new List<string>(new string[] { "Quit", "Owari", "Quitter", "parar" } );
+		static List<string> gameMultiplayer = new List<string>(new string[] { "Multiplayer", "muuchiplay", "Multi-Jouers", "Multijugador" } );
+		static List<string> gameContinue = new List<string>(new string[] { "Continue", "Tsuzuku", "Continuer", "Continuar" } );
+		static List<string> gameOnlineMode = new List<string>(new string[] { "Online", "Onrainu", "En ligne", "en línear" } );
+		
 		
 		//The function has 2 options, register or display
 		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
@@ -57,7 +60,8 @@ namespace Dictionary{
 			}else{
 				//We register the key
 				theTrslDict.Add(theRegKey, theValues);
-				Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
+				//Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
+				Console.WriteLine(theTrslDict[theRegKey][(int)theRegion] +" +1");
 			}
 	
 			
@@ -65,19 +69,15 @@ namespace Dictionary{
 		
 	
 		public static void Main (string[] args){
+			//We call the translations here
 			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
 			translateWord(registeredKeys.gameMultiplayer, languageRegion.jp, gameMultiplayer);
 			translateWord(registeredKeys.gameExit, languageRegion.jp, gameExit);
 			translateWord(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
+			translateWord(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew);
+			translateWord(registeredKeys.gameOnlineMode, languageRegion.fr_can, gameOnlineMode);
+			translateWord(registeredKeys.gameOnlineMode, languageRegion.spn_mex, gameOnlineMode);
 		}
-		
-		//Fonction avec 2 parametres
-		// Param = (le mot clef,   la langue/Region)
-		//On cherches dans un tableau en utilisant la clef.
-		//On cherches pour la bonne traduction en utilisant le deuxieme parametre
-		//On retourne le resultat 
-		
-		//List<string> listKeyword = new List<string>();
 	}
 	
 	
