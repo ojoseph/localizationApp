@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 namespace Dictionary{
+	
 	class MainClass{	
 		//First we want to has a bank that holds all the possible keys.
 		enum registeredKeys{
@@ -64,7 +65,7 @@ namespace Dictionary{
 				}
 	
 			}
-		}
+		}//End TranslateWord
 		
 	
 		public static void Main (string[] args){
@@ -78,7 +79,8 @@ namespace Dictionary{
 			translateWord(registeredKeys.gameOnlineMode, languageRegion.spn_mex, gameOnlineMode);
 			translateWord(registeredKeys.gameOnlineMode, languageRegion.en_uk, gameOnlineMode);
 		}
-	}
+		
+	}//End Main class
 	
 	
 }
