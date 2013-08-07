@@ -71,20 +71,19 @@ namespace Dictionary{
 		//The function has 2 options, register or display
 		static void translateWord(registeredKeys theRegKey, languageRegion theRegion, List<string> theValues){
 			
-					//Before Registering we check if it already exists
-					if (theTrslDict.ContainsKey(theRegKey)) {
-						Console.WriteLine("Sorry " +theTrslDict[theRegKey][(int)theRegion] +" is already registered!");
-						//We display it
-						Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
-					}else{
-						//We register the key
-						
-						theTrslDict.Add(theRegKey, theValues);
-						Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
-					}
-			
-					//We display the keyword
-					//Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+			//Before Registering we check if it already exists
+			if (theTrslDict.ContainsKey(theRegKey)) {
+				Console.WriteLine("Sorry " +theTrslDict[theRegKey][(int)theRegion] +" is already registered!");
+				//We display it
+				Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
+			}else{
+				//We register the key
+				theTrslDict.Add(theRegKey, theValues);
+				Console.WriteLine("New key "+ theTrslDict[theRegKey][(int)theRegion] +" is  now registered! ");
+			}
+	
+			//We display the keyword
+			//Console.WriteLine("Requested Translation: " + theTrslDict[theRegKey][(int)theRegion]);
 		}
 		
 		
@@ -92,7 +91,7 @@ namespace Dictionary{
 		
 	
 		public static void Main (string[] args){
-			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
+			/*findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
 			//findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.register);
 			findTranslation(registeredKeys.gameExit, languageRegion.jp, gameExit, transAct.register);
 			findTranslation(registeredKeys.gameMultiplayer, languageRegion.jp, gameMultiplayer, transAct.register);
@@ -102,7 +101,7 @@ namespace Dictionary{
 			
 			findTranslation(registeredKeys.gameMultiplayer, languageRegion.fr_can, gameMultiplayer, transAct.display);
 			findTranslation(registeredKeys.gameExit, languageRegion.fr_can, gameExit, transAct.display);
-			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.display);
+			findTranslation(registeredKeys.gameStartNew, languageRegion.jp, gameStartNew, transAct.display);*/
 			
 		
 			translateWord(registeredKeys.gameContinue, languageRegion.jp, gameContinue);
